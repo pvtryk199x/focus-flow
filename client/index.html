@@ -1,13 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Focus Flow App</title>
     <script type="module" src="./src/main.js"></script>
   </head>
   <body>
-    <p> THIS IS A BIG TEST</p>
+    <header>
+      <nav>
+        <a href="./index.html">Home</a>
+        <a href="#journal">Journal</a>
+        <button>Login</button>
+      </nav>
+    </header>
+    <main>
+      <h1>FOCUSFLOW</h1>
+      <p>Take control of your doomscrolling</p>
+      <div id="intro-video">Insert video here</div>
+      <div id="prompt-form">
+        <form>
+          <h4>Focus your flow!</h4>
+          <label for="EmotionalGoal">Choose your emotional goal</label>
+          <select name="EmotionalGoal" id="EmotionalGoal">
+            <option value="Calm">Calm</option>
+            <option value="Focused">Focused</option>
+            <option value="Energised">Energized</option>
+            <option value="Creative">Creative</option>
+            <option value="Inspired">Inspired</option>
+            <option value="Motivated">Motivated</option>
+            <option value="Happy">Happy</option>
+            <option value="Relaxed">Relaxed</option>
+            <option valule="Centered">Centered</option>
+          </select>
+
+          <label for="DevelopmentArea">Choose your area of development</label>
+          <input
+            name="DevelopmentArea"
+            type="text"
+            placeholder="Communication, Leadership,
+          Time Management, Emotional Intelligence..."
+            required
+          />
+
+          <label for="LengthOfVideo"
+            >Choose the video time length in minutes</label
+          >
+          <input name="LengthOfVideo" type="number" required />
+
+          <label for="CountryOfOrigin"
+            >Choose the video country of origin</label
+          >
+          <input
+            name="CountryOfOrigin"
+            type="text"
+            placeholder="UK, US, FR, DE..."
+            required
+          />
+
+          <label for="Language">Choose the video language</label>
+          <input
+            name="Language"
+            type="text"
+            placeholder="English, French, German..."
+            required
+          />
+
+          <button id="SubmitForm" type="submit">Get My Flow</button>
+        </form>
+      </div>
+      <div id="reflection-entry">My Flow</div>
+      <div id="flow-journal">Journal</div>
+    </main>
+    <footer>
+      <a href="#aboutus">About us</a>
+    </footer>
   </body>
 </html>
