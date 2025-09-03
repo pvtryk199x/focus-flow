@@ -1,4 +1,3 @@
-
 // Select the form and the video player elements
 const promptForm = document.querySelector("#prompt-form form");
 const videoPlayer1 = document.getElementById("video-player1");
@@ -11,23 +10,32 @@ promptForm.addEventListener("submit", async function (event) {
 
   // Collect form data
   const emotionalGoal = document.getElementById("EmotionalGoal").value;
-  const developmentArea = promptForm.querySelector('[name="DevelopmentArea"]').value;
-  const lengthOfVideo = promptForm.querySelector('[name="LengthOfVideo"]').value;
-  const countryOfOrigin = promptForm.querySelector('[name="CountryOfOrigin"]').value;
+  const developmentArea = promptForm.querySelector(
+    '[name="DevelopmentArea"]'
+  ).value;
+  const lengthOfVideo = promptForm.querySelector(
+    '[name="LengthOfVideo"]'
+  ).value;
+  const countryOfOrigin = promptForm.querySelector(
+    '[name="CountryOfOrigin"]'
+  ).value;
   const language = promptForm.querySelector('[name="Language"]').value;
 
   // Create the AI prompt
-  const userPrompt = `Generate a JSON object with two YouTube video suggestions based on the following criteria: emotional goal "${emotionalGoal}", development area "${developmentArea}", video length "${lengthOfVideo}" minutes, country of origin "${countryOfOrigin}", and language "${language}". The JSON should have a "videos" array, where each object has a "title" and a "url" key. Ensure the URLs are valid YouTube embed links.`;
+  const userPrompt = `Generate a JSON object with two YouTube video suggestions based on the following criteria: emotional goal "${emotionalGoal}", development area "${developmentArea}", video length "${lengthOfVideo}" minutes, country of origin "${countryOfOrigin}", and language "${language}". The JSON should have a "videos" array, where each object has a "title" and a "url" key. Ensure the URLs are valid YouTube embed links. Only return the JSON object without any additional text.`;
 
   try {
     // Prompt goes to server
-    const response = await fetch("http://localhost:8833/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ prompt: userPrompt }),
-    });
+    const response = await fetch(
+      "https://focus-flow-server.onrender.com/chat",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ prompt: userPrompt }),
+      }
+    );
 
     const aiResponseText = await response.json();
     console.log("AI Response:", aiResponseText);
@@ -38,8 +46,14 @@ promptForm.addEventListener("submit", async function (event) {
 
     // Insert the video
     if (videos && videos.length >= 2) {
-      videoPlayer1.innerHTML = `<iframe width="auto" height="315" src="${videos[0].url}" frameborder="0" allowfullscreen></iframe>`;
-      videoPlayer2.innerHTML = `<iframe width="auto" height="315" src="${videos[1].url}" frameborder="0" allowfullscreen></iframe>`;
+      videoPlayer1.innerHTML = `<iframe width="auto" height="315" src="${videos[0].url.replace(
+        "watch?v=",
+        "embed/"
+      )}" frameborder="0" allowfullscreen></iframe>`;
+      videoPlayer2.innerHTML = `<iframe width="auto" height="315" src="${videos[1].url.replace(
+        "watch?v=",
+        "embed/"
+      )}" frameborder="0" allowfullscreen></iframe>`;
     } else {
       console.error("AI response did not contain enough video data.");
     }
