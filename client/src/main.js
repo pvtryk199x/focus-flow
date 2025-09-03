@@ -26,16 +26,13 @@ promptForm.addEventListener("submit", async function (event) {
 
   try {
     // Prompt goes to server
-    const response = await fetch(
-      "https://focus-flow-server.onrender.com/chat",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt: userPrompt }),
-      }
-    );
+    const response = await fetch("http://localhost:8833/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prompt: userPrompt }),
+    });
 
     const aiResponseText = await response.json();
     console.log("AI Response:", aiResponseText);
@@ -49,11 +46,11 @@ promptForm.addEventListener("submit", async function (event) {
       videoPlayer1.innerHTML = `<iframe width="auto" height="315" src="${videos[0].url.replace(
         "watch?v=",
         "embed/"
-      )}" frameborder="0" allowfullscreen></iframe>`;
+      )}" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
       videoPlayer2.innerHTML = `<iframe width="auto" height="315" src="${videos[1].url.replace(
         "watch?v=",
         "embed/"
-      )}" frameborder="0" allowfullscreen></iframe>`;
+      )}" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
     } else {
       console.error("AI response did not contain enough video data.");
     }

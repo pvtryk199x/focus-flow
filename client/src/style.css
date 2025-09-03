@@ -131,13 +131,27 @@ p {
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.2s ease, transform 0.1s ease;
-  width: 50%;
+  width: 70%;
 }
 
 .video-reflection-pair {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   margin-bottom: 2rem;
+}
+
+#reflectioninput1,
+#reflectioninput2 textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 120px;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 #video-player1,
