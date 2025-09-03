@@ -26,13 +26,16 @@ promptForm.addEventListener("submit", async function (event) {
 
   try {
     // Prompt goes to server
-    const response = await fetch("http://localhost:8833/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ prompt: userPrompt }),
-    });
+    const response = await fetch(
+      "https://focus-flow-server.onrender.com/chat",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ prompt: userPrompt }),
+      }
+    );
 
     const aiResponseText = await response.json();
     console.log("AI Response:", aiResponseText);
